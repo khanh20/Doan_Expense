@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/screen/calendar_screen.dart';
-import 'package:flutter_application_1/presentation/screen/home_screen.dart';
-import 'package:flutter_application_1/presentation/screen/login_screen.dart';
-import 'package:flutter_application_1/presentation/screen/main_bottom_screen.dart';
-import 'package:flutter_application_1/presentation/screen/setting_screen.dart';
-import 'package:flutter_application_1/presentation/screen/signup_screen.dart';
-import 'package:flutter_application_1/presentation/screen/statistical_screen.dart';
+import 'package:flutter_application_1/presentation/pages/calendar_screen.dart';
+import 'package:flutter_application_1/presentation/pages/home_screen.dart';
+import 'package:flutter_application_1/presentation/pages/login_screen.dart';
+import 'package:flutter_application_1/presentation/pages/main_bottom_screen.dart';
+import 'package:flutter_application_1/presentation/pages/setting_screen.dart';
+import 'package:flutter_application_1/presentation/pages/signup_screen.dart';
+import 'package:flutter_application_1/presentation/pages/statistical_screen.dart';
 
 class Routes {
   Routes._();

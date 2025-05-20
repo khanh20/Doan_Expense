@@ -1,5 +1,6 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter_application_1/data/network/api/api_create_exp.dart';
+import 'package:flutter_application_1/data/network/api/api_get_category.dart';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
 import 'package:flutter_application_1/data/network/rest_client.dart';
@@ -23,6 +24,7 @@ class NetworkModule {
     getIt.registerSingleton<ApiLogin>(ApiLogin());
     getIt.registerSingleton<ApiRegister>(ApiRegister());
     getIt.registerSingleton<ApiCreateExp>(ApiCreateExp());
+    getIt.registerSingleton<ApiGetCategory>(ApiGetCategory());
 
 
     

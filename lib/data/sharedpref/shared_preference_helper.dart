@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/preferences.dart';
@@ -94,6 +95,13 @@ class SharedPreferenceHelper {
     await _sharedPreference.remove(Preferences.phone_number);
     await _sharedPreference.remove(Preferences.date_of_birth);
     return true;
+  }
+  // Get userId from token
+    Future<String?> get userIdFromToken async {
+    final token = await authToken;
+    if (token == null || token.isEmpty) return null;
+    final decoded = JwtDecoder.decode(token);
+    return decoded['sid']; 
   }
 
 }

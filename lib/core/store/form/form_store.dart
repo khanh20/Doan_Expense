@@ -1,8 +1,7 @@
-
+import 'package:decimal/decimal.dart';
 import 'package:flutter_application_1/core/store/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
-
 
 part 'form_store.g.dart';
 
@@ -36,10 +35,12 @@ abstract class _FormStore with Store {
   // store variables:-----------------------------------------------------------
   @observable
   String userEmail = '';
+  @observable
+  String amount = '';
 
   @observable
   String password = '';
-  
+
   @observable
   String firstName = '';
 
@@ -57,7 +58,9 @@ abstract class _FormStore with Store {
 
   @computed
   bool get canLogin =>
-      !formErrorStore.hasErrorsInLogin && userEmail.isNotEmpty && password.isNotEmpty;
+      !formErrorStore.hasErrorsInLogin &&
+      userEmail.isNotEmpty &&
+      password.isNotEmpty;
 
   @computed
   bool get canRegister =>
@@ -68,7 +71,6 @@ abstract class _FormStore with Store {
       lastName.isNotEmpty &&
       phoneNumber.isNotEmpty &&
       dateOfBirth != null;
-
 
   @computed
   bool get canForgetPassword =>
@@ -81,9 +83,15 @@ abstract class _FormStore with Store {
   }
 
   @action
+  void setAmount(String value) {
+    amount = value;
+  }
+
+  @action
   void setPassword(String value) {
     password = value;
   }
+
   @action
   void setFirstName(String value) => firstName = value;
 
@@ -97,7 +105,20 @@ abstract class _FormStore with Store {
   void setDateOfBirth(DateTime value) => dateOfBirth = value;
 
   // === Validators ===
-  @action
+@action
+void validateAmount(String value) {
+  if (value.isEmpty) {
+    formErrorStore.amount = "Số tiền không được để trống";
+  } else if (!isNumeric(value)) {
+    formErrorStore.amount = "Số tiền không hợp lệ";
+  } else if (Decimal.parse(value) <= Decimal.zero) {
+    formErrorStore.amount = "Số tiền phải lớn hơn 0";
+  } else {
+    formErrorStore.amount = null;
+  }
+}
+
+
   void validateUserEmail(String value) {
     if (value.isEmpty) {
       formErrorStore.userEmail = "Email can't be empty";
@@ -119,7 +140,6 @@ abstract class _FormStore with Store {
     }
   }
 
-  
   @action
   void validateFirstName(String value) {
     if (value.isEmpty) {
@@ -170,6 +190,8 @@ class FormErrorStore = _FormErrorStore with _$FormErrorStore;
 abstract class _FormErrorStore with Store {
   @observable
   String? userEmail;
+  @observable
+  String? amount;
 
   @observable
   String? password;

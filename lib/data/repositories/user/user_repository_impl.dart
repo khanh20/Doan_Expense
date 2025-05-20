@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/exceptions/network_exceptions.dart';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
-import 'package:flutter_application_1/domain/entities/user/User.dart';
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_repository.dart';
 import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
 

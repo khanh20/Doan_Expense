@@ -46,6 +46,21 @@ mixin _$FormStore on _FormStore, Store {
     });
   }
 
+  late final _$amountAtom = Atom(name: '_FormStore.amount', context: context);
+
+  @override
+  String get amount {
+    _$amountAtom.reportRead();
+    return super.amount;
+  }
+
+  @override
+  set amount(String value) {
+    _$amountAtom.reportWrite(value, super.amount, () {
+      super.amount = value;
+    });
+  }
+
   late final _$passwordAtom =
       Atom(name: '_FormStore.password', context: context);
 
@@ -156,6 +171,17 @@ mixin _$FormStore on _FormStore, Store {
   }
 
   @override
+  void setAmount(String value) {
+    final _$actionInfo =
+        _$_FormStoreActionController.startAction(name: '_FormStore.setAmount');
+    try {
+      return super.setAmount(value);
+    } finally {
+      _$_FormStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setPassword(String value) {
     final _$actionInfo = _$_FormStoreActionController.startAction(
         name: '_FormStore.setPassword');
@@ -211,11 +237,11 @@ mixin _$FormStore on _FormStore, Store {
   }
 
   @override
-  void validateUserEmail(String value) {
+  void validateAmount(String value) {
     final _$actionInfo = _$_FormStoreActionController.startAction(
-        name: '_FormStore.validateUserEmail');
+        name: '_FormStore.validateAmount');
     try {
-      return super.validateUserEmail(value);
+      return super.validateAmount(value);
     } finally {
       _$_FormStoreActionController.endAction(_$actionInfo);
     }
@@ -269,6 +295,7 @@ mixin _$FormStore on _FormStore, Store {
   String toString() {
     return '''
 userEmail: ${userEmail},
+amount: ${amount},
 password: ${password},
 firstName: ${firstName},
 lastName: ${lastName},
@@ -318,6 +345,22 @@ mixin _$FormErrorStore on _FormErrorStore, Store {
   set userEmail(String? value) {
     _$userEmailAtom.reportWrite(value, super.userEmail, () {
       super.userEmail = value;
+    });
+  }
+
+  late final _$amountAtom =
+      Atom(name: '_FormErrorStore.amount', context: context);
+
+  @override
+  String? get amount {
+    _$amountAtom.reportRead();
+    return super.amount;
+  }
+
+  @override
+  set amount(String? value) {
+    _$amountAtom.reportWrite(value, super.amount, () {
+      super.amount = value;
     });
   }
 
@@ -389,6 +432,7 @@ mixin _$FormErrorStore on _FormErrorStore, Store {
   String toString() {
     return '''
 userEmail: ${userEmail},
+amount: ${amount},
 password: ${password},
 firstName: ${firstName},
 lastName: ${lastName},

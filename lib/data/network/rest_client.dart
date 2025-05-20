@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'exceptions/network_exceptions.dart';
 
 class RestClient {
+  
   // GET 
   Future<dynamic> get(String path) async {
     try {
@@ -14,12 +15,12 @@ class RestClient {
   }
 
   // POST 
-  Future<dynamic> post(String path, {Map<String, dynamic>? data}) async {
+  Future<dynamic> post(String path, {Map<String, dynamic>? data,Map<String, String>? headers}) async {
     try {
       final response = await http.post(
         Uri.parse(path),
         body: jsonEncode(data),
-        headers: {
+        headers:headers ?? {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },

@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'package:flutter_application_1/data/network/api/api_create_exp.dart';
+import 'package:flutter_application_1/data/network/api/api_get_category.dart';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
+import 'package:flutter_application_1/data/repositories/category_repository_impl.dart';
 import 'package:flutter_application_1/data/repositories/exp_repository_impl.dart';
 import 'package:flutter_application_1/data/repositories/user/user_repository_impl.dart';
 import 'package:flutter_application_1/data/repositories/user/user_signup_impl.dart';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
-import 'package:flutter_application_1/domain/repositories/exp_respository.dart';
+import 'package:flutter_application_1/domain/repositories/category_repository.dart';
+import 'package:flutter_application_1/domain/repositories/exp_repository.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_repository.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,7 +42,16 @@ class RepositoryModule {
      getIt.registerSingleton<ExpRepository>(ExpRepositoryImpl(
       getIt<SharedPreferenceHelper>(),
       getIt<ApiCreateExp>(),
+      
     ));
+
+      getIt.registerSingleton<CategoryRepository>(CategoryRepositoryImpl(
+      getIt<SharedPreferenceHelper>(),
+      getIt<ApiGetCategory>(),
+      
+    ));
+
+    
   
   }
 }

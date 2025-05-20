@@ -1,7 +1,7 @@
 import 'package:flutter_application_1/core/store/error/error_store.dart';
 import 'package:flutter_application_1/core/store/form/form_store.dart';
 import 'package:flutter_application_1/data/network/exceptions/network_exceptions.dart';
-import 'package:flutter_application_1/domain/entities/user/User.dart';
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_application_1/domain/usecases/user/is_logged_in_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/save_login_in_status_usecase.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_application_1/core/store/error/error_store.dart';
 import 'package:flutter_application_1/core/store/form/form_store.dart';
 import 'package:flutter_application_1/data/network/exceptions/network_exceptions.dart';
-import 'package:flutter_application_1/domain/entities/user/User.dart';
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_application_1/domain/usecases/user/signup_usecase.dart';
 import 'package:mobx/mobx.dart';
 part 'signup_store.g.dart';

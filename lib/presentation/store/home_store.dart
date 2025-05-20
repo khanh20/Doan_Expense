@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter_application_1/data/network/exceptions/network_exceptions.dart';
-import 'package:flutter_application_1/domain/entities/expense/Expense.dart';
+import 'package:flutter_application_1/domain/entities/Expense.dart';
 import 'package:flutter_application_1/domain/usecases/expense/create_exp_usecase.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_application_1/core/store/error/error_store.dart';
@@ -18,16 +18,23 @@ abstract class _HomeStore with Store {
   late List<ReactionDisposer> _disposers;
 
   void _setupDisposers() {
-    _disposers = [reaction((_) => success, (_) => success = false, delay: 2000)];
+    _disposers = [
+   
+    ];
   }
   // empty responses:-----------------------------------------------------------
   static ObservableFuture<Expense?> emptyCreateExpResponse = ObservableFuture.value(
+    null,
+  
+  );
+    static ObservableFuture<Expense?> emptyResponse = ObservableFuture.value(
     null,
   );
   // store variables:-----------------------------------------------------------
   @observable
   ObservableFuture<Expense?> createExpFuture = emptyCreateExpResponse;
-
+  @computed
+  bool get isLoading => createExpFuture.status == FutureStatus.pending;
   @observable
   bool success = false;
   // stores:--------------------------------------------------------------------
@@ -48,8 +55,9 @@ abstract class _HomeStore with Store {
 
     );
     final future = _createExpUsecase.call(params:createExpParams);
+    print('Future của usecase: $future');
     createExpFuture = ObservableFuture(future);
-    print("Create future: $future.");
+
     await future
         .then((value) async {
           if (value != null) {
@@ -72,5 +80,9 @@ abstract class _HomeStore with Store {
       d();
     }
   }
- 
+ void resetSuccess() {
+   print('[resetSuccess] called');
+  success = false;
+}
+
 }

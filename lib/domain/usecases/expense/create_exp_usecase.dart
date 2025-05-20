@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
-import 'package:flutter_application_1/domain/entities/expense/Expense.dart';
-import 'package:flutter_application_1/domain/repositories/exp_respository.dart';
+import 'package:flutter_application_1/domain/entities/Expense.dart';
+import 'package:flutter_application_1/domain/repositories/exp_repository.dart';
 import '../../../core/domain/usecase/use_case.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'create_exp_usecase.g.dart';

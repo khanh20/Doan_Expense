@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/domain/entities/user/User.dart';
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_repository.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../../core/domain/usecase/use_case.dart';

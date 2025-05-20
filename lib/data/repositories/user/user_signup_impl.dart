@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
-import 'package:flutter_application_1/domain/entities/user/User.dart';
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_signup.dart';
 import 'package:flutter_application_1/domain/usecases/user/signup_usecase.dart';
 
