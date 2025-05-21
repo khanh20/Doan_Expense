@@ -29,7 +29,7 @@ class ExpRepositoryImpl extends ExpRepository {
       );
 
       final expense = Expense(
-        userId: responseData['userId'] ?? '',
+        userId: responseData['userId'] ?? 0,
         amount: Decimal.parse(responseData['amount'].toString()),
         createdDate: DateTime.parse(responseData['createdDate']),
         description: responseData['description'],
@@ -46,4 +46,6 @@ class ExpRepositoryImpl extends ExpRepository {
       throw NetworkException(message: 'Đã xảy ra lỗi không xác định.');
     }
   }
+
+  
 }

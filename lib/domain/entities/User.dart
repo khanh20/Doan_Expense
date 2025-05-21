@@ -5,7 +5,7 @@ class User{
   final String? lastName;
   final String? phoneNumber;
   final DateTime? dateOfBirth;
-  final String password;
+  final String? password;
   User ({
     required this.userId,
     this.firstName,
@@ -13,6 +13,6 @@ class User{
     this.lastName,
     this.phoneNumber,
     this.dateOfBirth,
-    required this.password,
+    this.password,
   });
 }

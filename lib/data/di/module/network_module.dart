@@ -3,6 +3,7 @@ import 'package:flutter_application_1/data/network/api/api_create_exp.dart';
 import 'package:flutter_application_1/data/network/api/api_get_category.dart';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
+import 'package:flutter_application_1/data/network/api/api_statistics.dart';
 import 'package:flutter_application_1/data/network/rest_client.dart';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,7 @@ class NetworkModule {
     getIt.registerSingleton<ApiRegister>(ApiRegister());
     getIt.registerSingleton<ApiCreateExp>(ApiCreateExp());
     getIt.registerSingleton<ApiGetCategory>(ApiGetCategory());
+    getIt.registerSingleton<ApiStatistics>(ApiStatistics());
 
 
     

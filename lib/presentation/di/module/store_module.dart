@@ -4,6 +4,7 @@ import 'package:flutter_application_1/core/store/form/form_store.dart';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
 import 'package:flutter_application_1/domain/usecases/category/get_category_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/expense/create_exp_usecase.dart';
+import 'package:flutter_application_1/domain/usecases/expense/statistic_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/is_logged_in_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/save_login_in_status_usecase.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_application_1/presentation/store/category_store.dart';
 import 'package:flutter_application_1/presentation/store/home_store.dart';
 import 'package:flutter_application_1/presentation/store/login_store.dart';
 import 'package:flutter_application_1/presentation/store/signup_store.dart';
+import 'package:flutter_application_1/presentation/store/statistic_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../di/service_locator.dart';
@@ -52,8 +54,12 @@ class StoreModule {
     getIt.registerSingleton<HomeStore>(
       HomeStore(getIt<CreateExpUsecase>(), getIt<ErrorStore>()),
     );
-     getIt.registerSingleton<CategoryStore>(
+    getIt.registerSingleton<CategoryStore>(
       CategoryStore(getIt<GetCategoryUsecase>(), getIt<ErrorStore>()),
+    );
+    getIt.registerSingleton<StatisticStore>(
+      StatisticStore(getIt<StatisticUsecase>(), getIt<ErrorStore>(),
+          getIt<FormErrorStore>()),
     );
   }
 }

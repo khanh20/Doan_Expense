@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -96,6 +97,16 @@ class SharedPreferenceHelper {
     await _sharedPreference.remove(Preferences.date_of_birth);
     return true;
   }
+    Future<void> saveUser(User user) async {
+    await saveUserId(user.userId.toString());
+    await saveUserEmail(user.email);
+    await saveFirstName(user.firstName?? 'Chưa có Họ');
+    await saveLastName(user.lastName?? 'Chưa có Tên');
+    await savePhoneNumber(user.phoneNumber?? 'Chưa có SDT');
+    if (user.dateOfBirth != null) {
+      await saveDateOfBirth(user.dateOfBirth!.toIso8601String());
+    }
+  }
   // Get userId from token
     Future<String?> get userIdFromToken async {
     final token = await authToken;
@@ -103,5 +114,33 @@ class SharedPreferenceHelper {
     final decoded = JwtDecoder.decode(token);
     return decoded['sid']; 
   }
+Future<User?> getUser() async {
+  final id = await userId;
+  final email = await userEmail;
+  final first = await firstName;
+  final last = await lastName;
+  final phone = await phoneNumber;
+  final dobString = await dateOfBirth;
+
+  // Nếu thiếu thông tin cơ bản thì trả về null
+  if (id == null || email == null || first == null || last == null) {
+    return null;
+  }
+
+  final dob = dobString != null ? DateTime.tryParse(dobString) : null;
+
+  return User(
+    userId: int.tryParse(id) ?? 0,
+    email: email,
+    firstName: first,
+    lastName: last,
+    phoneNumber: phone ?? '',
+    dateOfBirth: dob,
+    password: '', // Nếu không dùng đến, có thể bỏ qua hoặc dùng giá trị mặc định
+  );
+}
+
 
 }
+
+

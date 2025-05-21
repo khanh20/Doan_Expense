@@ -13,7 +13,7 @@ class Expense{
     required this.expenseId,
     required this.categoryId,
     required this.userId,
-    this.amount,
+    required this.amount,
     this.description,
     required this.createdDate,
     required this.type,

@@ -2,10 +2,12 @@ import 'dart:async';
 import 'package:flutter_application_1/data/sharedpref/shared_preference_helper.dart';
 import 'package:flutter_application_1/domain/repositories/category_repository.dart';
 import 'package:flutter_application_1/domain/repositories/exp_repository.dart';
+import 'package:flutter_application_1/domain/repositories/statistic_repository.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_repository.dart';
 import 'package:flutter_application_1/domain/repositories/user/user_signup.dart';
 import 'package:flutter_application_1/domain/usecases/category/get_category_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/expense/create_exp_usecase.dart';
+import 'package:flutter_application_1/domain/usecases/expense/statistic_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/is_logged_in_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/save_login_in_status_usecase.dart';
@@ -41,6 +43,9 @@ class UseCaseModule {
     );
     getIt.registerSingleton<GetCategoryUsecase>(
       GetCategoryUsecase(getIt<CategoryRepository>()),
+    );
+     getIt.registerSingleton<StatisticUsecase>(
+      StatisticUsecase(getIt<StatisticRepository>()),
     );
 
     // // post:--------------------------------------------------------------------

@@ -35,7 +35,8 @@ class UserRepositoryImpl extends UserRepository {
                 ? DateTime.parse(responseData['dateOfBirth'])
                 : null, 
       );
-
+      // Lưu thông tin người dùng 
+      await _sharedPrefsHelper.saveUser(user);
       // Lưu trạng thái đăng nhập
       await saveIsLoggedIn(true);
 
