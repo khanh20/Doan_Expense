@@ -4,19 +4,29 @@ import 'exceptions/network_exceptions.dart';
 
 class RestClient {
   // GET
-  Future<dynamic> get(String path, {Map<String, String>? headers}) async {
-    try {
-      final response = await http.get(
-        Uri.parse(path),
-        headers:
-            headers ??
-            {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      );
-      return _createResponse(response);
-    } catch (e) {
-      rethrow;
-    }
+Future<dynamic> get(String path, {
+  Map<String, String>? headers,
+  Map<String, dynamic>? params,
+}) async {
+  try {
+    // Nối query params vào URL nếu có
+    final uri = Uri.parse(path).replace(
+      queryParameters: params?.map((key, value) => MapEntry(key, value.toString())),
+    );
+
+    final response = await http.get(
+      uri,
+      headers: headers ?? {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+
+    return _createResponse(response);
+  } catch (e) {
+    rethrow;
   }
+}
 
   // POST
   Future<dynamic> post(

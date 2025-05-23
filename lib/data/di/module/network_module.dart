@@ -1,6 +1,7 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter_application_1/data/network/api/api_create_exp.dart';
 import 'package:flutter_application_1/data/network/api/api_get_category.dart';
+import 'package:flutter_application_1/data/network/api/api_get_exp.dart';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
 import 'package:flutter_application_1/data/network/api/api_statistics.dart';
@@ -27,6 +28,8 @@ class NetworkModule {
     getIt.registerSingleton<ApiCreateExp>(ApiCreateExp());
     getIt.registerSingleton<ApiGetCategory>(ApiGetCategory());
     getIt.registerSingleton<ApiStatistics>(ApiStatistics());
+    getIt.registerSingleton<ApiGetExp>(ApiGetExp());
+
 
 
     

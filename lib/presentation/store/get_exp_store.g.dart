@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'statistic_store.dart';
+part of 'get_exp_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,25 +8,25 @@ part of 'statistic_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$StatisticStore on _StatisticStore, Store {
-  late final _$statisticFutureAtom =
-      Atom(name: '_StatisticStore.statisticFuture', context: context);
+mixin _$GetExpStore on _GetExpStore, Store {
+  late final _$getExpFutureAtom =
+      Atom(name: '_GetExpStore.getExpFuture', context: context);
 
   @override
-  ObservableFuture<Statistic?> get statisticFuture {
-    _$statisticFutureAtom.reportRead();
-    return super.statisticFuture;
+  ObservableFuture<List<Expense?>> get getExpFuture {
+    _$getExpFutureAtom.reportRead();
+    return super.getExpFuture;
   }
 
   @override
-  set statisticFuture(ObservableFuture<Statistic?> value) {
-    _$statisticFutureAtom.reportWrite(value, super.statisticFuture, () {
-      super.statisticFuture = value;
+  set getExpFuture(ObservableFuture<List<Expense?>> value) {
+    _$getExpFutureAtom.reportWrite(value, super.getExpFuture, () {
+      super.getExpFuture = value;
     });
   }
 
   late final _$successAtom =
-      Atom(name: '_StatisticStore.success', context: context);
+      Atom(name: '_GetExpStore.success', context: context);
 
   @override
   bool get success {
@@ -41,18 +41,18 @@ mixin _$StatisticStore on _StatisticStore, Store {
     });
   }
 
-  late final _$statisticAsyncAction =
-      AsyncAction('_StatisticStore.statistic', context: context);
+  late final _$getExpAsyncAction =
+      AsyncAction('_GetExpStore.getExp', context: context);
 
   @override
-  Future<dynamic> statistic(DateTime createDate) {
-    return _$statisticAsyncAction.run(() => super.statistic(createDate));
+  Future<dynamic> getExp(String keyword) {
+    return _$getExpAsyncAction.run(() => super.getExp(keyword));
   }
 
   @override
   String toString() {
     return '''
-statisticFuture: ${statisticFuture},
+getExpFuture: ${getExpFuture},
 success: ${success}
     ''';
   }

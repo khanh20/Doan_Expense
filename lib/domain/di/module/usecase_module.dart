@@ -7,6 +7,7 @@ import 'package:flutter_application_1/domain/repositories/user/user_repository.d
 import 'package:flutter_application_1/domain/repositories/user/user_signup.dart';
 import 'package:flutter_application_1/domain/usecases/category/get_category_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/expense/create_exp_usecase.dart';
+import 'package:flutter_application_1/domain/usecases/expense/get_exp_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/expense/statistic_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/is_logged_in_usecase.dart';
 import 'package:flutter_application_1/domain/usecases/user/login_usecase.dart';
@@ -40,6 +41,9 @@ class UseCaseModule {
     );
     getIt.registerSingleton<CreateExpUsecase>(
       CreateExpUsecase(getIt<ExpRepository>()),
+    );
+    getIt.registerSingleton<GetExpUsecase>(
+      GetExpUsecase(getIt<ExpRepository>()),
     );
     getIt.registerSingleton<GetCategoryUsecase>(
       GetCategoryUsecase(getIt<CategoryRepository>()),

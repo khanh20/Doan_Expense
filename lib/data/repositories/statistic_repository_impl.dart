@@ -22,15 +22,17 @@ class StatisticRepositoryImpl extends StatisticRepository {
       final responseData = await _apiStatistics.statistics(params.createdDate);
       print('API response: $responseData');
       final statistic = Statistic(
-        dayIncome: Decimal.parse(responseData['dayIncome']),
-        dayExpense: Decimal.parse(responseData['dayExpense']),
-        dayRemaining: Decimal.parse(responseData['dayRemaining']),
-        monthIncome: Decimal.parse(responseData['monthIncome']),
-        monthExpense: Decimal.parse(responseData['monthExpense']),
-        monthRemaining: Decimal.parse(responseData['monthRemaining']),
-        yearIncome: Decimal.parse(responseData['yearIncome']),
-        yearExpense: Decimal.parse(responseData['yearExpense']),
-        yearRemaining: Decimal.parse(responseData['yearRemaining']),
+        dayIncome: Decimal.parse(responseData['dayIncome'].toString()),
+        dayExpense: Decimal.parse(responseData['dayExpense'].toString()),
+        dayRemaining: Decimal.parse(responseData['dayRemaining'].toString()),
+        monthIncome: Decimal.parse(responseData['monthIncome'].toString()),
+        monthExpense: Decimal.parse(responseData['monthExpense'].toString()),
+        monthRemaining: Decimal.parse(
+          responseData['monthRemaining'].toString(),
+        ),
+        yearIncome: Decimal.parse(responseData['yearIncome'].toString()),
+        yearExpense: Decimal.parse(responseData['yearExpense'].toString()),
+        yearRemaining: Decimal.parse(responseData['yearRemaining'].toString()),
       );
 
       return statistic;

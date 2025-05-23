@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_application_1/data/network/api/api_create_exp.dart';
 import 'package:flutter_application_1/data/network/api/api_get_category.dart';
+import 'package:flutter_application_1/data/network/api/api_get_exp.dart';
 import 'package:flutter_application_1/data/network/api/api_login.dart';
 import 'package:flutter_application_1/data/network/api/api_register.dart';
 import 'package:flutter_application_1/data/network/api/api_statistics.dart';
@@ -45,6 +46,8 @@ class RepositoryModule {
      getIt.registerSingleton<ExpRepository>(ExpRepositoryImpl(
       getIt<SharedPreferenceHelper>(),
       getIt<ApiCreateExp>(),
+      getIt<ApiGetExp>(),
+      
       
     ));
 
@@ -59,6 +62,7 @@ class RepositoryModule {
       getIt<ApiStatistics>(),
       
     ));
+
 
     
   

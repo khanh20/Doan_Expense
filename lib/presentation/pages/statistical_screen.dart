@@ -6,6 +6,7 @@ import 'package:flutter_application_1/di/service_locator.dart';
 import 'package:flutter_application_1/domain/entities/Statistic.dart';
 import 'package:flutter_application_1/domain/usecases/expense/statistic_usecase.dart';
 import 'package:flutter_application_1/presentation/store/statistic_store.dart';
+import 'package:flutter_application_1/presentation/widgets/chart_widget.dart';
 import 'package:flutter_application_1/presentation/widgets/date_selector.dart';
 import 'package:flutter_application_1/presentation/widgets/finance_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -19,7 +20,7 @@ class StatisticalScreen extends StatefulWidget {
 class _StatisticScreenState extends State<StatisticalScreen> {
   late StatisticStore _statisticStore;
   DateTime _selectedDate = DateTime.now();
-  String _selectedType = "day"; 
+  String _selectedType = "day";
 
   @override
   void initState() {
@@ -72,7 +73,7 @@ class _StatisticScreenState extends State<StatisticalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("Thống kê"),centerTitle: true,),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -129,13 +130,22 @@ class _StatisticScreenState extends State<StatisticalScreen> {
                     final statistic = future.value;
                     if (statistic == null)
                       return const Text("Không có dữ liệu.");
-
-                    return FinanceWidget(
-                      income: _getIncome(statistic),
-                      expense: _getExpense(statistic),
-                      remaining: _getRemaining(statistic),
+                    return Column(
+                      children: [
+                        FinanceWidget(
+                          income: _getIncome(statistic),
+                          expense: _getExpense(statistic),
+                          remaining: _getRemaining(statistic),
+                        ),
+                        const SizedBox(height: 20),
+                        ChartWidget(
+                          income: _getIncome(statistic),
+                          expense: _getExpense(statistic),
+                        ),
+                      ],
                     );
                   }
+
                   return Container();
                 },
               ),

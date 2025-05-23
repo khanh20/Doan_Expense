@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/domain/entities/User.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'home_screen.dart';
 import 'calendar_screen.dart';

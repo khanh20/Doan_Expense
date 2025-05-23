@@ -8,7 +8,6 @@ import 'package:flutter_application_1/presentation/widgets/section_title.dart';
 import 'package:flutter_application_1/utils/device/toast.dart';
 import 'package:flutter_application_1/utils/routes/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -66,12 +65,11 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 50,
+                      radius: 35,
                       backgroundImage: AssetImage(Assets().defaultAvatarUser),
                     ),
                     SizedBox(width: 35),
 
-                    // Show profile căn giữa khoảng trống giữa title và icon
                     Expanded(
                       child: Text(
                         user?.firstName ?? "Người dùng",
@@ -179,7 +177,11 @@ class _SettingScreenState extends State<SettingScreen> {
 
   // app bar methods:-----------------------------------------------------------
   PreferredSizeWidget _buildAppBar() {
-    return AppBar(title: Text("Cài đặt"), actions: _buildActions(context));
+    return AppBar(
+      title: Text("Cài đặt"),
+      centerTitle: true,
+      actions: _buildActions(context),
+    );
   }
 
   List<Widget> _buildActions(BuildContext context) {

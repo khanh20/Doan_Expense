@@ -2,7 +2,6 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/store/form/form_store.dart';
-import 'package:flutter_application_1/data/sharedpref/constants/preferences.dart';
 import 'package:flutter_application_1/di/service_locator.dart';
 import 'package:flutter_application_1/presentation/store/category_store.dart';
 import 'package:flutter_application_1/presentation/store/home_store.dart';
@@ -11,10 +10,8 @@ import 'package:flutter_application_1/presentation/widgets/category.dart';
 import 'package:flutter_application_1/presentation/widgets/date_selector.dart';
 import 'package:flutter_application_1/presentation/widgets/description_input.dart';
 import 'package:flutter_application_1/presentation/widgets/expense_tab_switch.dart';
-import 'package:flutter_application_1/presentation/widgets/progress_indicator_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -38,13 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final typeString =
         _selectedType == TransactionType.income ? 'tiền thu' : 'tiền chi';
     final createDate = _selectedDate;
-    print('--- Bắt đầu lưu giao dịch ---');
-    print('Số tiền: $amountText');
-    print('Ghi chú: $description');
-    print('Loại: $typeString');
-    print('Ngày tạo: $createDate');
-    print('Category ID: $_selectedCategoryId');
-
     if (_selectedCategoryId == null) {
       print('Vui lòng chọn danh mục');
       return;
@@ -52,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       final amount = Decimal.parse(amountText);
-
       await _homeStore.createExp(
         amount,
         description,
@@ -60,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         typeString,
         _selectedCategoryId!,
       );
-      print('Hoàn thành gọi createExp');
+
     } catch (e) {
       print('Lỗi chuyển đổi số tiền: $e');
     }
@@ -137,9 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Text('Lưu giao dịch'),
               ),
             ),
-
-            /// Observer xử lý snackbar và reset dữ liệu khi tạo giao dịch thành công hoặc lỗi
-     
           ],
         ),
       ),
@@ -149,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
 @override
 void initState() {
   super.initState();
-
   // Lắng nghe trạng thái success
   reaction(
     (_) => _homeStore.success,
@@ -173,14 +158,13 @@ void initState() {
           _selectedType = TransactionType.income;
           _selectedCategoryId = null;
         });
-
         // Cập nhật type cho categoryStore nếu cần
         _categoryStore.setSelectedType("income");
       }
     },
   );
 
-  // Tương tự bạn có thể dùng reaction cho error message
+  // Reaction cho error message
   reaction(
     (_) => _homeStore.errorStore.errorMessage,
     (String message) {

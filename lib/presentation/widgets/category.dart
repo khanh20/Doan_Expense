@@ -70,9 +70,10 @@ class _CategoryState extends State<Category> {
             padding: const EdgeInsets.all(16.0),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+                crossAxisCount: 4,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1,
               ),
               itemCount: filteredCategories.length,
               itemBuilder: (context, index) {
@@ -91,10 +92,7 @@ class _CategoryState extends State<Category> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color:
-                          isSelected
-                              ? Colors.grey[700] // Màu khác khi chọn
-                              : Colors.grey[900], // Màu khác khi chọn
+                      color: isSelected ? Colors.grey[700] : Colors.grey[900],
                       borderRadius: BorderRadius.circular(12),
                       border:
                           isSelected
@@ -104,13 +102,20 @@ class _CategoryState extends State<Category> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          category?.name ?? '',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
+                        Flexible(
+                          child: Text(
+                            category?.name ?? '',
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,// vượt quá thì ...
+                            textAlign: TextAlign.center,
+                            softWrap: true,// xuống dòng
                           ),
                         ),
+
                         const SizedBox(height: 8),
                       ],
                     ),
